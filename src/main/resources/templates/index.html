@@ -1,11 +1,92 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://thymeleaf.org"
+>
 <head>
-    <title>Spring Security Example</title>
+    <title>List</title>
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Raleway:700,800);
+
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #eee;
+            font-family: 'Raleway', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: auto;
+            width: 300px
+        }
+
+        button {
+            background: #007bff;;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            font-family: 'Raleway', sans-serif;
+            font-size: 27px;
+            height: 50px;
+            width: 100%;
+            margin-bottom: 10px;
+            overflow: hidden;
+            transition: all .3s cubic-bezier(.6, 0, .4, 1);
+        }
+
+        .mini_button {
+            background: #007bff;;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            font-family: 'Raleway', sans-serif;
+            font-size: 20px;
+            height: 25px;
+            width: 100%;
+            margin-bottom: 10px;
+            overflow: hidden;
+            transition: all .3s cubic-bezier(.6, 0, .4, 1);
+        }
+    </style>
 </head>
 <body>
-<h1>Welcome to Index PAGE!</h1>
+<div align="center">
+    <h2>All Users List</h2>
 
-
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Last name</th>
+            <th>Age</th>
+            <th>Enabled</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}">User ID</td>
+            <td th:text="${user.username}">Name</td>
+            <td th:text="${user.lastName}">Last Name</td>
+            <td th:text="${user.age}">Age</td>
+            <td th:text="${user.enabled}">Enabled</td>
+            <td>
+                <a th:href="@{'/edit/' + ${user.id}}">
+                    <button type="submit" class = mini_button>Edit</button></a>
+                &nbsp;&nbsp;
+                <a th:href="@{'/delete/' + ${user.id}}">
+                    <button type="submit"class = mini_button>Delete</button></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <a th:href="/new"><button type="submit">Create New User</button></a>
+    <br/>
+    <a th:href="@{/logout}"><button type="submit">Logout</button></a>
+    <br><br>
+</div>
 </body>
 </html>

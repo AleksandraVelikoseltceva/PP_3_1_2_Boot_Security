@@ -2,6 +2,11 @@ package ru.kata.spring.boot_security.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import ru.kata.spring.boot_security.demo.entity.Role;
+import ru.kata.spring.boot_security.demo.entity.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class SpringBootSecurityDemoApplication {

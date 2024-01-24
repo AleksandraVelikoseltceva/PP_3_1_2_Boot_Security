@@ -1,23 +1,68 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"> <html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://thymeleaf.org"
+>
 <head>
-    <meta charset="UTF-8">
-    <title>User</title>
+    <title>For User</title>
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Raleway:700,800);
+
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #eee;
+            font-family: 'Raleway', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: auto;
+            width: 300px
+        }
+
+        button {
+            background: #007bff;;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            font-family: 'Raleway', sans-serif;
+            font-size: 27px;
+            height: 50px;
+            width: 100%;
+            margin-bottom: 10px;
+            overflow: hidden;
+            transition: all .3s cubic-bezier(.6, 0, .4, 1);
+        }
+    </style>
 </head>
 <body>
-<table border="1"> User Info Page
+<h1>Welcome user!</h1>
+
+<table border="1" cellpadding="10">
+    <thead>
     <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>email</th>
+        <th>User ID</th>
+        <th>Name</th>
+        <th>Last name</th>
+        <th>Age</th>
+        <th>Enabled</th>
+        <th>Role</th>
     </tr>
-    <tr>
-        <td th:text="${user.getId()}"/>
-        <td th:text="${user.getUsername()}"/>
-        <td th:text="${user.getEmail()}"/>
+    </thead>
+    <tbody>
+    <tr th:object="${user}">
+        <td th:text="${user.id}">User ID</td>
+        <td th:text="${user.username}">Name</td>
+        <td th:text="${user.lastName}">Last Name</td>
+        <td th:text="${user.age}">Age</td>
+        <td th:text="${user.enabled}">Enabled</td>
+        <td><span th:each="roles : ${user.getRoles()}" th:utext="${roles.toString()}+'  '">Roles</span></td>
     </tr>
+    </tbody>
 </table>
-<br/>
-<form  action="#"  th:action="@{/logout}" method="get">
-    <input type="submit" value="Logout"/>
-</form>
+<br><br>
+<a th:href="@{/logout}">
+    <button type="submit">Logout</button>
+</a>
+<br><br>
+</body>
+</html>
