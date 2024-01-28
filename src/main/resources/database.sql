@@ -31,8 +31,7 @@ CREATE TABLE users.user_roles
 
 INSERT INTO users
 VALUES (1, 'admin', 'adminLastName', '20', '$2a$10$ILZwHhLkoYBkfOC7y5e9pu.XYAag.G7flEobcJgbLr.dg/QG2Ziee'),
-       (2, 'user', 'userLastName', '20', '$2a$10$ILZwHhLkoYBkfOC7y5e9pu.XYAag.G7flEobcJgbLr.dg/QG2Ziee'),
-       (3, 'userNoRole', 'LastName', '20', '$2a$10$ILZwHhLkoYBkfOC7y5e9pu.XYAag.G7flEobcJgbLr.dg/QG2Ziee');
+       (2, 'user', 'userLastName', '20', '$2a$10$ILZwHhLkoYBkfOC7y5e9pu.XYAag.G7flEobcJgbLr.dg/QG2Ziee');
 
 INSERT INTO roles
 VALUES (1, 'ROLE_USER'),
