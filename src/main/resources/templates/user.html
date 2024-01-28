@@ -44,7 +44,6 @@
         <th>Name</th>
         <th>Last name</th>
         <th>Age</th>
-        <th>Enabled</th>
         <th>Role</th>
     </tr>
     </thead>
@@ -54,8 +53,7 @@
         <td th:text="${user.username}">Name</td>
         <td th:text="${user.lastName}">Last Name</td>
         <td th:text="${user.age}">Age</td>
-        <td th:text="${user.enabled}">Enabled</td>
-        <td><span th:each="roles : ${user.getRoles()}" th:utext="${roles.toString()}+'  '">Roles</span></td>
+        <td><span th:each="roles : ${user.getRoles()}" th:utext="${roles.name}+'  '">Roles</span></td>
     </tr>
     </tbody>
 </table>

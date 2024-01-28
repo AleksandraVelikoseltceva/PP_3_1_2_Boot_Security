@@ -8,6 +8,6 @@ import ru.kata.spring.boot_security.demo.entity.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(value = "SELECT u FROM User u WHERE u.username = :username")
-    User getUserByUsername(@Param("username")String username);
+    User getUserByUsername(@Param("username") String username);
 
 }

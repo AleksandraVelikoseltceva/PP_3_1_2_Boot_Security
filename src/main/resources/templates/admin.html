@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
 <head>
     <meta charset="utf-8"/>
-    <title>Manager</title>
+    <title>Admin page</title>
     <style>
         @import url(http://fonts.googleapis.com/css?family=Raleway:700,800);
 
@@ -45,7 +45,6 @@
         <th>Name</th>
         <th>Last name</th>
         <th>Age</th>
-        <th>Enabled</th>
         <th>Role</th>
     </tr>
     </thead>
@@ -55,15 +54,17 @@
         <td th:text="${admin.username}">Name</td>
         <td th:text="${admin.lastName}">Last Name</td>
         <td th:text="${admin.age}">Age</td>
-        <td th:text="${admin.enabled}">Enabled</td>
-        <td><span th:each="roles : ${admin.getRoles()}" th:utext="${roles.toString()}+'  '">Roles</span></td>
+        <td><span th:each="roles : ${admin.getRoles()}" th:utext="${roles.name}+'  '">Roles</span></td>
     </tr>
     </tbody>
 </table>
-<br><br>
+<br>
+<form action="/index">
+    <button>List All Users</button>
+</form>
+<br>
 <a th:href="@{/logout}">
     <button type="submit">Logout</button>
 </a>
-<br><br>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://thymeleaf.org"
 >
 <head>
-    <title>List</title>
+    <title>All List Users</title>
     <style>
         @import url(http://fonts.googleapis.com/css?family=Raleway:700,800);
 
@@ -61,7 +61,7 @@
             <th>Name</th>
             <th>Last name</th>
             <th>Age</th>
-            <th>Enabled</th>
+            <th>Roles</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -71,21 +71,27 @@
             <td th:text="${user.username}">Name</td>
             <td th:text="${user.lastName}">Last Name</td>
             <td th:text="${user.age}">Age</td>
-            <td th:text="${user.enabled}">Enabled</td>
+            <td><span th:each="roles : ${user.getRoles()}" th:utext="${roles.name}+'  '">Roles</span></td>
             <td>
                 <a th:href="@{'/edit/' + ${user.id}}">
-                    <button type="submit" class = mini_button>Edit</button></a>
+                    <button class=mini_button type="submit">Edit</button>
+                </a>
                 &nbsp;&nbsp;
                 <a th:href="@{'/delete/' + ${user.id}}">
-                    <button type="submit"class = mini_button>Delete</button></a>
+                    <button class=mini_button type="submit">Delete</button>
+                </a>
             </td>
         </tr>
         </tbody>
     </table>
     <br/>
-    <a th:href="/new"><button type="submit">Create New User</button></a>
-    <br/>
-    <a th:href="@{/logout}"><button type="submit">Logout</button></a>
+    <form action="/new">
+        <button>Create new user</button>
+    </form>
+    <br><br/>
+    <a th:href="@{/logout}">
+        <button type="submit">Logout</button>
+    </a>
     <br><br>
 </div>
 </body>

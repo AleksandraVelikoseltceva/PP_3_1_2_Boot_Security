@@ -19,15 +19,15 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> listAll(){
+    public List<User> listAll() {
         return userRepository.findAll();
     }
 
-    public void save(User user){
+    public void save(User user) {
         userRepository.save(user);
     }
 
-    public User get(Long id){
+    public User get(Long id) {
         return userRepository.findById(id).get();
     }
 

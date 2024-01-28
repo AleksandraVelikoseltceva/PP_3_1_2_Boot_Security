@@ -15,7 +15,7 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "username")
@@ -25,16 +25,13 @@ public class User implements UserDetails {
     private String lastName;
 
     @Column(name = "age")
-    private int age;
+    private Integer age;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "enabled")
-    private boolean enabled;
-
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles",
+    @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
@@ -43,15 +40,15 @@ public class User implements UserDetails {
 
     }
 
-    public User(Long id, String username, String lastName, int age, String password, boolean enabled, List<Role> roles) {
+    public User(Long id, String username, String lastName, Integer age, String password, List<Role> roles) {
         this.id = id;
         this.username = username;
         this.lastName = lastName;
         this.age = age;
         this.password = password;
-        this.enabled = enabled;
         this.roles = roles;
     }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -85,6 +82,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return false;
     }
+
 }
