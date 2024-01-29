@@ -10,10 +10,11 @@
 
 
 ПОЛЬЗОВАТЕЛИ :
+
 role: ADMIN 
 username: admin 
 password: 123
 
-ROLE: USER
+role: USER
 username: user
 password: 123

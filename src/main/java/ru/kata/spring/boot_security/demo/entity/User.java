@@ -28,7 +28,7 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)//todo: необходимо переделать на LAZY. Разобраться, изучить проблему n+1 и реализовать на слое repository через LEFT_JOIN_FETCH
     private Set<Role> roles;
 
     public User() {
