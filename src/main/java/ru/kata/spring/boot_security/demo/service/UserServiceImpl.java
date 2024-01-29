@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    //todo: необходимо изучит вопрос иденпотентность и проставить @Transactional(...READ_ONLY) над нужными методами
     public List<User> listAll() {
         return userRepository.findAll();
     }
