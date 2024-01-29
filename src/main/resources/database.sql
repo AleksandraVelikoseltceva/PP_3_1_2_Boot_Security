@@ -16,27 +16,27 @@ CREATE TABLE users.roles
 ) ENGINE = InnoDB;
 
 -- Table for mapping user and roles: user_roles
-CREATE TABLE users.user_roles
+CREATE TABLE users.users_roles
 (
     user_id INT NOT NULL,
-    role_id INT NOT NULL,
+    roles_id INT NOT NULL,
 
     FOREIGN KEY (user_id) REFERENCES users (id),
-    FOREIGN KEY (role_id) REFERENCES roles (id),
+    FOREIGN KEY (roles_id) REFERENCES roles (id),
 
-    UNIQUE (user_id, role_id)
+    UNIQUE (user_id, roles_id)
 ) ENGINE = InnoDB;
 
 -- Insert data
 
-INSERT INTO users
+INSERT INTO users (id, username, last_name, age, password)
 VALUES (1, 'admin', 'adminLastName', '20', '$2a$10$ILZwHhLkoYBkfOC7y5e9pu.XYAag.G7flEobcJgbLr.dg/QG2Ziee'),
        (2, 'user', 'userLastName', '20', '$2a$10$ILZwHhLkoYBkfOC7y5e9pu.XYAag.G7flEobcJgbLr.dg/QG2Ziee');
 
-INSERT INTO roles
+INSERT INTO roles (id, name)
 VALUES (1, 'ROLE_USER'),
        (2, 'ROLE_ADMIN');
 
 
-INSERT INTO user_roles
+INSERT INTO users_roles (user_id, roles_id)
 VALUES (1, 2),(2, 1);
