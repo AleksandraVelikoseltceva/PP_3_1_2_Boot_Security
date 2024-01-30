@@ -1,5 +1,7 @@
 package ru.kata.spring.boot_security.demo.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -28,7 +30,13 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)//todo: необходимо переделать на LAZY. Разобраться, изучить проблему n+1 и реализовать на слое repository через LEFT_JOIN_FETCH
+    @Fetch(FetchMode.SUBSELECT)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id")
+    )
     private Set<Role> roles;
 
     public User() {
@@ -114,7 +122,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
+        return roles;
     }
 
 }

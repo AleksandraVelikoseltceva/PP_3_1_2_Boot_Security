@@ -59,7 +59,7 @@ public class AppController {
     @RequestMapping("/edit/{id}")
     public ModelAndView showEditUserPage(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("edit_user");
-        User user = userService.get(id);
+        User user = userService.getUserById(id);
         mav.addObject("user", user);
 
         return mav;
@@ -68,6 +68,7 @@ public class AppController {
     @RequestMapping("/delete/{id}")
     public String deleteUser(@PathVariable(name = "id") Long id) {
         userService.delete(id);
+
         return "redirect:/index";
     }
 

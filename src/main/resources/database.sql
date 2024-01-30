@@ -1,3 +1,9 @@
+-- Drop table
+
+DROP TABLE IF EXISTS users.users_roles;
+DROP TABLE IF EXISTS users.roles;
+DROP TABLE IF EXISTS users.users;
+
 -- Table: users
 CREATE TABLE users.users
 (
@@ -18,7 +24,7 @@ CREATE TABLE users.roles
 -- Table for mapping user and roles: user_roles
 CREATE TABLE users.users_roles
 (
-    user_id INT NOT NULL,
+    user_id  INT NOT NULL,
     roles_id INT NOT NULL,
 
     FOREIGN KEY (user_id) REFERENCES users (id),
@@ -39,4 +45,5 @@ VALUES (1, 'ROLE_USER'),
 
 
 INSERT INTO users_roles (user_id, roles_id)
-VALUES (1, 2),(2, 1);
+VALUES (1, 2),
+       (2, 1);

@@ -20,26 +20,24 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    //todo: необходимо изучит вопрос иденпотентность и проставить @Transactional(...READ_ONLY) над нужными методами
     public List<User> listAll() {
         return userRepository.findAll();
     }
 
+    @Transactional
     public void save(User user) {
         user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
-    public User get(Long id) {
+    public User getUserById(Long id) {
         return userRepository.findById(id).get();
     }
 
+    @Transactional
     public void delete(Long id) {
         userRepository.deleteById(id);
     }
